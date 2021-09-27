@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af14acb091004e3abf65301de4ce47e5, type: 3}
+  m_Name: PenguinsSettings
+  m_EditorClassIdentifier: 
+  PenguinPrefab: {fileID: 9184115775096152154, guid: cc150f6322146144d9b3512e07076c7d, type: 3}
+  penguinsCount: 20
