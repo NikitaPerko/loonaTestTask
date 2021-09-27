@@ -7,5 +7,12 @@ namespace LoonaTest.Game.Settings
     {
         public Penguin PenguinPrefab;
         public int penguinsCount;
+        public float dangerRadius;
+        public float idleWaitingTimeFrom;
+        public float idleWaitingTimeTo;
+        public float idleWalkingSpeedFrom;
+        public float idleWalkingSpeedTo;
+
+        public float DangerRadiusSqr => dangerRadius * dangerRadius;
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PenguinsSettings
   m_EditorClassIdentifier: 
   PenguinPrefab: {fileID: 9184115775096152154, guid: cc150f6322146144d9b3512e07076c7d, type: 3}
-  penguinsCount: 20
+  penguinsCount: 25
+  dangerRadius: 4

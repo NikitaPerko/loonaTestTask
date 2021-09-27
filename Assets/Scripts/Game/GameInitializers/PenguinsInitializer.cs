@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using LoonaTest.Game.Settings;
 using UnityEngine;
 
@@ -12,18 +13,20 @@ namespace LoonaTest.Game.GameInitializers
             _penguinsSettings = penguinsSettings;
         }
 
-        public void Init(GameField gameField)
+        public List<Penguin> Init(GameField gameField)
         {
-            var fieldBorders = gameField.GetFieldBordersXZ();
+            List<Penguin> penguins = new List<Penguin>(_penguinsSettings.penguinsCount);
 
             for (int i = 0; i < _penguinsSettings.penguinsCount; i++)
             {
-                float x = Mathf.Lerp(fieldBorders.leftBot.x, fieldBorders.rightTop.x, Random.value);
-                float z = Mathf.Lerp(fieldBorders.leftBot.y, fieldBorders.rightTop.y, Random.value);
-                var position = new Vector3(x, 0, z);
+                var randomPos = gameField.GetRandomFieldXZPos();
+                var position = new Vector3(randomPos.x, 0, randomPos.y);
                 var rotation = Quaternion.Euler(0, Random.value * 360, 0);
                 var penguin = Object.Instantiate(_penguinsSettings.PenguinPrefab, position, rotation);
+                penguins.Add(penguin);
             }
+
+            return penguins;
         }
     }
 }

@@ -27,5 +27,15 @@ namespace LoonaTest.Game
             var rightTopPositionXZ = new Vector2(rightTopPosition.x, rightTopPosition.z);
             return (leftBotPositionXZ, rightTopPositionXZ);
         }
+
+        public Vector2 GetRandomFieldXZPos()
+        {
+            var leftBotPosition = _leftBotPos.position;
+            var rightTopPosition = _rightTopPos.position;
+
+            float x = Mathf.Lerp(leftBotPosition.x, rightTopPosition.x, Random.value);
+            float z = Mathf.Lerp(leftBotPosition.z, rightTopPosition.z, Random.value);
+            return new Vector2(x, z);
+        }
     }
 }
