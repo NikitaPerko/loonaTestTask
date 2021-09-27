@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PenguinPrefab: {fileID: 9184115775096152154, guid: cc150f6322146144d9b3512e07076c7d, type: 3}
   penguinsCount: 25
-  dangerRadius: 4
+  dangerRadius: 3
   idleWaitingTimeFrom: 1
-  idleWaitingTimeTo: 3
-  idleWalkingSpeedFrom: 2.5
-  idleWalkingSpeedTo: 5
+  idleWaitingTimeTo: 2
+  idleWalkingSpeedFrom: 4
+  idleWalkingSpeedTo: 6
+  dangerSpeed: 8

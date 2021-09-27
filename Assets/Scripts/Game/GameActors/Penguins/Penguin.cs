@@ -25,12 +25,28 @@ namespace LoonaTest.Game.GameActors.Penguins
 
         private void Update()
         {
+            Character closestCharacter = null;
+            float closestCharacterSqrtDist = float.MaxValue;
+            bool wasFinded = false;
+
             foreach (var character in _characters.Characters)
             {
-                if ((character.transform.position - transform.position).sqrMagnitude < _penguinsSettings.DangerRadiusSqr)
+                float squrtDist = (character.transform.position - transform.position).sqrMagnitude;
+
+                if (squrtDist < _penguinsSettings.DangerRadiusSqr)
                 {
-                    _penguinBehaviour.SwitchState(PenguinState.Danger);
+                    if (squrtDist < closestCharacterSqrtDist)
+                    {
+                        closestCharacterSqrtDist = squrtDist;
+                        wasFinded = true;
+                        closestCharacter = character;
+                    }
                 }
+            }
+
+            if (wasFinded)
+            {
+                _penguinBehaviour.SwitchState(PenguinState.Danger, closestCharacter);
             }
         }
     }

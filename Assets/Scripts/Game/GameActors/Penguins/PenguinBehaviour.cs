@@ -8,12 +8,12 @@ namespace LoonaTest.Game.GameActors.Penguins
 {
     public class PenguinBehaviour
     {
-        private readonly Penguins.Penguin _penguin;
-        private PenguinState _state = PenguinState.Idle;
+        private readonly Penguin _penguin;
+        public PenguinState State;
         private readonly Dictionary<PenguinState, IAction> _penguinActions;
         private readonly List<Coroutine> _currentActivities = new List<Coroutine>();
 
-        public PenguinBehaviour(NavMeshAgent navMeshAgent, Penguins.Penguin penguin, GameField gameField,
+        public PenguinBehaviour(NavMeshAgent navMeshAgent, Penguin penguin, GameField gameField,
             PenguinsSettings penguinsSettings)
         {
             _penguin = penguin;
@@ -21,7 +21,7 @@ namespace LoonaTest.Game.GameActors.Penguins
             _penguinActions = new Dictionary<PenguinState, IAction>
             {
                 {PenguinState.Idle, new PenguinIdleAction(navMeshAgent, this, gameField, penguinsSettings)},
-                {PenguinState.Danger, new PenguinDangerAction()}
+                {PenguinState.Danger, new PenguinDangerAction(penguin, this, navMeshAgent, penguinsSettings)}
             };
         }
 
@@ -43,16 +43,16 @@ namespace LoonaTest.Game.GameActors.Penguins
             _currentActivities.Add(_penguin.StartCoroutine(activity));
         }
 
-        public void SwitchState(PenguinState state)
+        public void SwitchState(PenguinState state, object data = null)
         {
-            _state = state;
+            State = state;
             StopCurrentActivities();
-            Act();
+            Act(data);
         }
 
-        private void Act()
+        private void Act(object data = null)
         {
-            _penguinActions[_state].Act();
+            _penguinActions[State].Act(data);
         }
     }
 }

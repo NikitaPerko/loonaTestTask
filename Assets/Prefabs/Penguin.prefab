@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2231256975105428369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6817921, y: 0.6817921, z: 0.6817921}
   m_Children:
   - {fileID: 8655377184124343277}
   - {fileID: 5559585700697670895}
@@ -58,11 +58,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 2231256975105428369}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 0.1
   m_Speed: 4
   m_Acceleration: 10
   avoidancePriority: 50
-  m_AngularSpeed: 360
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -81,10 +81,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1
+  m_Radius: 0.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &-78922894182261592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &5494689050298038453
 GameObject:
@@ -127,8 +127,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5494689050298038453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2231256975105428374}
   m_RootOrder: 1
@@ -208,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6145044177094589888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.773, z: 0.133}
-  m_LocalScale: {x: 0.2884813, y: 0.2884813, z: 0.2884813}
+  m_LocalPosition: {x: -0, y: 1.425, z: 0.382}
+  m_LocalScale: {x: 0.6416978, y: 0.6416978, z: 0.6416978}
   m_Children: []
   m_Father: {fileID: 2231256975105428374}
   m_RootOrder: 0

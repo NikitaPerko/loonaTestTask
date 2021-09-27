@@ -26,7 +26,7 @@ namespace LoonaTest.Game.GameActors.Penguins
             activities = new List<Func<IEnumerator>> {WalkingInRandomPoint, StayingAtCurrentPlace};
         }
 
-        public void Act()
+        public void Act(object data = null)
         {
             var randomActivity = activities[Random.Range(0, activities.Count)];
             _penguinBehaviour.StartActivity(randomActivity());

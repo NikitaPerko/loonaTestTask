@@ -13,6 +13,7 @@ namespace LoonaTest.Game.Settings
         public float idleWaitingTimeTo;
         public float idleWalkingSpeedFrom;
         public float idleWalkingSpeedTo;
+        public float dangerSpeed;
 
         public float DangerRadiusSqr => dangerRadius * dangerRadius;
     }
