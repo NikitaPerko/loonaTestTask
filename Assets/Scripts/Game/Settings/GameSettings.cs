@@ -1,3 +1,4 @@
+using LoonaTest.Game.GameActors;
 using UnityEngine;
 
 namespace LoonaTest.Game.Settings
@@ -7,5 +8,6 @@ namespace LoonaTest.Game.Settings
     {
         public PenguinsSettings PenguinsSettings;
         public GameField GameFieldPrefab;
+        public CharactersSettings CharactersSettings;
     }
 }

@@ -1,3 +1,4 @@
+using LoonaTest.Game.GameActors.Penguins;
 using UnityEngine;
 
 namespace LoonaTest.Game.Settings

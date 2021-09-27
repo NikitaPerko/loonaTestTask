@@ -1,3 +1,4 @@
+using LoonaTest.Game.GameActors;
 using LoonaTest.Game.GameEventHandlers;
 using LoonaTest.Game.Settings;
 using UnityEngine;

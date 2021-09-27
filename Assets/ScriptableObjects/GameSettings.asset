@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PenguinsSettings: {fileID: 11400000, guid: 1b968ddccdbc3484893b9e56ad7c90a0, type: 2}
   GameFieldPrefab: {fileID: 5621258650029116605, guid: 68ff6e3d63ae2eb4d80ce9c81c1e5502, type: 3}
+  CharactersSettings: {fileID: 11400000, guid: e7e3dbe19fcfb124ca5cd033e3378232, type: 2}

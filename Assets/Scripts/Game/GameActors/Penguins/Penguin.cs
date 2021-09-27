@@ -1,22 +1,21 @@
-using System;
 using System.Collections.Generic;
-using LoonaTest.Game.GameActors.PenguinBehaviour;
+using LoonaTest.Game.GameActors.Characters;
 using LoonaTest.Game.Settings;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace LoonaTest.Game
+namespace LoonaTest.Game.GameActors.Penguins
 {
     public class Penguin : MonoBehaviour
     {
         [SerializeField]
         private NavMeshAgent _navMeshAgent;
 
-        private List<Character> _characters;
+        private CharactersContainer _characters;
         private PenguinsSettings _penguinsSettings;
         private PenguinBehaviour _penguinBehaviour;
 
-        public void Init(List<Character> characters, PenguinsSettings penguinsSettings, GameField gameField)
+        public void Init(CharactersContainer characters, PenguinsSettings penguinsSettings, GameField gameField)
         {
             _penguinsSettings = penguinsSettings;
             _characters = characters;
@@ -26,7 +25,7 @@ namespace LoonaTest.Game
 
         private void Update()
         {
-            foreach (var character in _characters)
+            foreach (var character in _characters.Characters)
             {
                 if ((character.transform.position - transform.position).sqrMagnitude < _penguinsSettings.DangerRadiusSqr)
                 {

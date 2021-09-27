@@ -1,4 +1,4 @@
-namespace LoonaTest.Game.GameActors.PenguinBehaviour
+namespace LoonaTest.Game.GameActors.Penguins
 {
     public interface IAction
     {

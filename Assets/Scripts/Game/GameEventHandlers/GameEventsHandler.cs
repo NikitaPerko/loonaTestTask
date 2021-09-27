@@ -1,12 +1,15 @@
+using System.Collections.Generic;
+using LoonaTest.Game.GameActors.Penguins;
+
 namespace LoonaTest.Game.GameEventHandlers
 {
     public class GameEventsHandler
     {
-        private readonly PenguinOutOfBorderHandler _penguinOutOfBorderHandler;
+        private PenguinOutOfBorderHandler _penguinOutOfBorderHandler;
 
-        public GameEventsHandler()
+        public void SetDependencies(PenguinsContainer penguinsContainer)
         {
-            _penguinOutOfBorderHandler = new PenguinOutOfBorderHandler();
+            _penguinOutOfBorderHandler = new PenguinOutOfBorderHandler(penguinsContainer.Penguins);
         }
 
         public void OnPenguinOutOfBorder(Penguin penguin)

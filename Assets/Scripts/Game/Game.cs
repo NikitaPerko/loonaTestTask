@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using LoonaTest.Game.GameActors.Characters;
+using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.GameEventHandlers;
 using LoonaTest.Game.GameInitializers;
 using LoonaTest.Game.Settings;
@@ -8,9 +12,11 @@ namespace LoonaTest.Game
 {
     public class Game : MonoBehaviour
     {
-        private GameInitializer _gameInitializer;
         private GameEventsHandler _gameEventsHandler;
         private GameSettings _gameSettings;
+        private GameFieldInitializer _gameFieldInitializer;
+        private PenguinsInitializer _penguinsInitializer;
+        private CharactersInitializer _charactersInitializer;
 
         public void Init(GameSettings gameSettings)
         {
@@ -23,7 +29,9 @@ namespace LoonaTest.Game
         private void InitDependencies()
         {
             _gameEventsHandler = new GameEventsHandler();
-            _gameInitializer = new GameInitializer(_gameEventsHandler, _gameSettings);
+            _gameFieldInitializer = new GameFieldInitializer(_gameEventsHandler, _gameSettings);
+            _penguinsInitializer = new PenguinsInitializer(_gameSettings.PenguinsSettings);
+            _charactersInitializer = new CharactersInitializer(_gameSettings.CharactersSettings);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode _)
@@ -36,7 +44,12 @@ namespace LoonaTest.Game
 
         private void InitGame()
         {
-            _gameInitializer.Init();
+            var charactersContainer = new CharactersContainer();
+            var penguinsContainer = new PenguinsContainer();
+            var gameField = _gameFieldInitializer.Init();
+            _penguinsInitializer.Init(gameField, penguinsContainer, charactersContainer);
+            _charactersInitializer.Init(gameField, charactersContainer, penguinsContainer);
+            _gameEventsHandler.SetDependencies(penguinsContainer);
         }
     }
 }

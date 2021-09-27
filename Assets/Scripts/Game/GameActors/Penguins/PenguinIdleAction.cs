@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-namespace LoonaTest.Game.GameActors.PenguinBehaviour
+namespace LoonaTest.Game.GameActors.Penguins
 {
     public class PenguinIdleAction : IAction
     {

@@ -1,7 +1,8 @@
+using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.GameEventHandlers;
 using UnityEngine;
 
-namespace LoonaTest.Game
+namespace LoonaTest.Game.GameActors
 {
     public class ExitBorder : MonoBehaviour
     {

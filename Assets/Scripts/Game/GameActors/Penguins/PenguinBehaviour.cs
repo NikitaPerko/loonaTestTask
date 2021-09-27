@@ -4,16 +4,16 @@ using LoonaTest.Game.Settings;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace LoonaTest.Game.GameActors.PenguinBehaviour
+namespace LoonaTest.Game.GameActors.Penguins
 {
     public class PenguinBehaviour
     {
-        private readonly Penguin _penguin;
+        private readonly Penguins.Penguin _penguin;
         private PenguinState _state = PenguinState.Idle;
         private readonly Dictionary<PenguinState, IAction> _penguinActions;
         private readonly List<Coroutine> _currentActivities = new List<Coroutine>();
 
-        public PenguinBehaviour(NavMeshAgent navMeshAgent, Penguin penguin, GameField gameField,
+        public PenguinBehaviour(NavMeshAgent navMeshAgent, Penguins.Penguin penguin, GameField gameField,
             PenguinsSettings penguinsSettings)
         {
             _penguin = penguin;
