@@ -14,7 +14,7 @@ namespace LoonaTest.Game.GameActors
         [SerializeField]
         private Transform _rightTopPos;
 
-        public void Init(GameEventsHandler gameEventsHandler)
+        public void Init(IGameEventsHandler gameEventsHandler)
         {
             _exitBorder.Init(gameEventsHandler);
         }

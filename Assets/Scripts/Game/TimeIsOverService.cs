@@ -5,12 +5,13 @@ namespace LoonaTest.Game
 {
     public class TimeIsOverService
     {
-        private readonly TimeService _timeService;
+        private readonly ITimeService _timeService;
         private readonly GameData _gameData;
-        private readonly GameEventsHandler _gameEventsHandler;
+        private readonly IGameEventsHandler _gameEventsHandler;
         private readonly GameSettings _gameSettings;
 
-        public TimeIsOverService(TimeService timeService, GameData gameData, GameEventsHandler gameEventsHandler, GameSettings gameSettings)
+        public TimeIsOverService(ITimeService timeService, GameData gameData, IGameEventsHandler gameEventsHandler,
+            GameSettings gameSettings)
         {
             _timeService = timeService;
             _gameData = gameData;

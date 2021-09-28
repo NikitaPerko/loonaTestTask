@@ -9,7 +9,7 @@ namespace LoonaTest.Game.GameActors.Penguins
     public class PenguinBehaviour
     {
         private readonly Penguin _penguin;
-        public PenguinState State;
+        private PenguinState _state;
         private readonly Dictionary<PenguinState, IAction> _penguinActions;
         private readonly List<Coroutine> _currentActivities = new List<Coroutine>();
 
@@ -50,14 +50,14 @@ namespace LoonaTest.Game.GameActors.Penguins
 
         public void SwitchState(PenguinState state, object data = null)
         {
-            State = state;
+            _state = state;
             StopCurrentActivities();
             Act(data);
         }
 
         private void Act(object data = null)
         {
-            _penguinActions[State].Act(data);
+            _penguinActions[_state].Act(data);
         }
     }
 }

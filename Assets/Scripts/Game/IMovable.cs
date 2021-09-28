@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LoonaTest.Game.GameActors.Characters
+namespace LoonaTest.Game
 {
     public interface IMovable
     {

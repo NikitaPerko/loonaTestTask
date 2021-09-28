@@ -50,7 +50,7 @@ namespace LoonaTest.Game.GameActors.Penguins
 
                 _penguin.transform.rotation =
                     Quaternion.RotateTowards(_penguin.transform.rotation,
-                        Quaternion.LookRotation(runDirection), 1000f * Time.deltaTime);
+                        Quaternion.LookRotation(runDirection), 2000f * Time.deltaTime);
                 _navMeshAgent.Move(runDirection * _penguinsSettings.dangerSpeed * Time.deltaTime);
                 yield return null;
             }

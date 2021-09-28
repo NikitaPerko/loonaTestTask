@@ -1,4 +1,3 @@
-using System;
 using LoonaTest.Game.GameActors;
 using LoonaTest.Game.GameActors.Characters;
 using LoonaTest.Game.GameActors.Penguins;
@@ -13,15 +12,18 @@ namespace LoonaTest.Game
     public class Game : MonoBehaviour
     {
         private GameData _gameData;
-        private GameEventsHandler _gameEventsHandler;
+        private IGameEventsHandler _gameEventsHandler;
         private GameSettings _gameSettings;
         private GameFieldInitializer _gameFieldInitializer;
         private PenguinsInitializer _penguinsInitializer;
         private CharactersInitializer _charactersInitializer;
+        private PenguinsDeinitializer _penguinsDeinitializer;
+        private CharactersDeinitializer _charactersDeinitializer;
         private CharactersContainer _charactersContainer;
         private PenguinsContainer _penguinsContainer;
+        private GameFieldDeinitializer _gameFieldDeinitializer;
         private GameField _gameField;
-        private TimeService _timeService;
+        private ITimeService _timeService;
         private TimeIsOverService _timeIsOverService;
 
         public void Init(GameSettings gameSettings)
@@ -42,18 +44,26 @@ namespace LoonaTest.Game
             _charactersInitializer = new CharactersInitializer(_gameSettings.CharactersSettings);
             _charactersContainer = new CharactersContainer();
             _penguinsContainer = new PenguinsContainer();
+            _penguinsDeinitializer = new PenguinsDeinitializer(_penguinsContainer);
+            _charactersDeinitializer = new CharactersDeinitializer(_charactersContainer);
             _timeIsOverService = new TimeIsOverService(_timeService, _gameData, _gameEventsHandler, _gameSettings);
         }
 
         private void DeinitDependencies()
         {
-            _timeService = null;
+            _gameData = null;
             _gameEventsHandler = null;
+            _timeService = null;
             _gameFieldInitializer = null;
             _penguinsInitializer = null;
             _charactersInitializer = null;
             _charactersContainer = null;
             _penguinsContainer = null;
+            _gameFieldDeinitializer = null;
+            _penguinsDeinitializer = null;
+            _charactersDeinitializer = null;
+            _timeIsOverService = null;
+            _gameField = null;
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode _)
@@ -69,6 +79,7 @@ namespace LoonaTest.Game
             _timeService.Init();
             _timeIsOverService.Init();
             _gameField = _gameFieldInitializer.Init();
+            _gameFieldDeinitializer = new GameFieldDeinitializer(_gameField);
             _penguinsInitializer.Init(_gameField, _penguinsContainer, _charactersContainer);
             _charactersInitializer.Init(_gameField, _charactersContainer, _penguinsContainer);
             _gameEventsHandler.SetDependencies(_penguinsContainer, this);
@@ -76,23 +87,9 @@ namespace LoonaTest.Game
 
         public void DeinitGame()
         {
-            Destroy(_gameField.gameObject);
-            _gameField = null;
-
-            foreach (var penguin in _penguinsContainer.Penguins)
-            {
-                penguin.Deinit();
-                Destroy(penguin.gameObject);
-            }
-
-            _penguinsContainer.Penguins.Clear();
-
-            foreach (var character in _charactersContainer.Characters)
-            {
-                Destroy(character.gameObject);
-            }
-
-            _charactersContainer.Characters.Clear();
+            _gameFieldDeinitializer.Deinit();
+            _penguinsDeinitializer.Deinit();
+            _charactersDeinitializer.Deinit();
             _timeIsOverService.Deinit();
             DeinitDependencies();
         }

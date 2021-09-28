@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace LoonaTest.Game.GameEventHandlers
 {
-    public class PenguinOutOfBorderHandler
+    public class PenguinOutOfBorderHandler : IPenguinOutOfBorderHandler
     {
         private readonly List<Penguin> _penguins;
-        private readonly PenguinsAreOverHandler _penguinsAreOverHandler;
+        private readonly IPenguinsAreOverHandler _penguinsAreOverHandler;
 
-        public PenguinOutOfBorderHandler(List<Penguin> penguins, PenguinsAreOverHandler penguinsAreOverHandler)
+        public PenguinOutOfBorderHandler(List<Penguin> penguins, IPenguinsAreOverHandler penguinsAreOverHandler)
         {
             _penguins = penguins;
             _penguinsAreOverHandler = penguinsAreOverHandler;

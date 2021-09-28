@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LoonaTest.Game
 {
-    public class TimeService
+    public class TimeService : ITimeService
     {
         private readonly GameData _gameData;
         public event Action OnSecondUpdate;

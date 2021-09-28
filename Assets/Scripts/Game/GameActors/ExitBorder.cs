@@ -6,9 +6,9 @@ namespace LoonaTest.Game.GameActors
 {
     public class ExitBorder : MonoBehaviour
     {
-        private GameEventsHandler _gameEventsHandler;
+        private IGameEventsHandler _gameEventsHandler;
 
-        public void Init(GameEventsHandler gameEventsHandler)
+        public void Init(IGameEventsHandler gameEventsHandler)
         {
             _gameEventsHandler = gameEventsHandler;
         }

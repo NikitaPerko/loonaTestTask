@@ -1,6 +1,6 @@
 namespace LoonaTest.Game.GameEventHandlers
 {
-    public class TimeIsOverHandler
+    public class TimeIsOverHandler : ITimeIsOverHandler
     {
         private readonly Game _game;
 

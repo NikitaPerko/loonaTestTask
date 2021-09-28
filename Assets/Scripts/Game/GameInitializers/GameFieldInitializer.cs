@@ -7,10 +7,10 @@ namespace LoonaTest.Game.GameInitializers
 {
     public class GameFieldInitializer
     {
-        private readonly GameEventsHandler _gameEventsHandler;
+        private readonly IGameEventsHandler _gameEventsHandler;
         private readonly GameSettings _gameSettings;
 
-        public GameFieldInitializer(GameEventsHandler gameEventsHandler, GameSettings gameSettings)
+        public GameFieldInitializer(IGameEventsHandler gameEventsHandler, GameSettings gameSettings)
         {
             _gameEventsHandler = gameEventsHandler;
             _gameSettings = gameSettings;

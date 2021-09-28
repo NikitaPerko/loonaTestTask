@@ -1,6 +1,6 @@
 namespace LoonaTest.Game.GameEventHandlers
 {
-    public class PenguinsAreOverHandler
+    public class PenguinsAreOverHandler : IPenguinsAreOverHandler
     {
         private readonly Game _game;
 

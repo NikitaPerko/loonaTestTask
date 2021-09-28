@@ -2,11 +2,11 @@ using LoonaTest.Game.GameActors.Penguins;
 
 namespace LoonaTest.Game.GameEventHandlers
 {
-    public class GameEventsHandler
+    public class GameEventsHandler : IGameEventsHandler
     {
-        private PenguinOutOfBorderHandler _penguinOutOfBorderHandler;
-        private PenguinsAreOverHandler _penguinsAreOverHandler;
-        private TimeIsOverHandler _timeIsOverHandler;
+        private IPenguinOutOfBorderHandler _penguinOutOfBorderHandler;
+        private IPenguinsAreOverHandler _penguinsAreOverHandler;
+        private ITimeIsOverHandler _timeIsOverHandler;
 
         public void SetDependencies(PenguinsContainer penguinsContainer, Game game)
         {
