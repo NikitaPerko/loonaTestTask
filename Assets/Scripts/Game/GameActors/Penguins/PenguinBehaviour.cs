@@ -25,6 +25,11 @@ namespace LoonaTest.Game.GameActors.Penguins
             };
         }
 
+        public void Deinit()
+        {
+            StopCurrentActivities();
+        }
+
         private void StopCurrentActivities()
         {
             foreach (var activity in _currentActivities)

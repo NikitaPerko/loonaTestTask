@@ -32,10 +32,10 @@ namespace LoonaTest.Game.GameActors.Penguins
 
         private IEnumerator WalkingOutFromCharacter(Character character)
         {
-            Debug.Log("AAAAA");
             var penguinPos = _penguin.transform.position;
-            var fromCharacterToPenguin = penguinPos - character.transform.position;
-            var runDirection = (character.transform.forward + fromCharacterToPenguin).normalized;
+            var characterTransform = character.transform;
+            var fromCharacterToPenguin = penguinPos - characterTransform.position;
+            var runDirection = (characterTransform.forward + fromCharacterToPenguin).normalized;
             _navMeshAgent.ResetPath();
 
             while (true)

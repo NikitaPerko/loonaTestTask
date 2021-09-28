@@ -23,6 +23,11 @@ namespace LoonaTest.Game.GameActors.Penguins
             _penguinBehaviour.SwitchState(PenguinState.Idle);
         }
 
+        public void Deinit()
+        {
+            _penguinBehaviour.Deinit();
+        }
+
         private void Update()
         {
             Character closestCharacter = null;
