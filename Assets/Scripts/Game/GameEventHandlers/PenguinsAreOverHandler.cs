@@ -1,17 +1,20 @@
+using UnityEngine;
+
 namespace LoonaTest.Game.GameEventHandlers
 {
     public class PenguinsAreOverHandler : IPenguinsAreOverHandler
     {
-        private readonly Game _game;
+        private readonly GameData _gameData;
 
-        public PenguinsAreOverHandler(Game game)
+        public PenguinsAreOverHandler(GameData gameData)
         {
-            _game = game;
+            _gameData = gameData;
         }
 
         public void OnPenguinsAreOver()
         {
-            _game.DeinitGame();
+            _gameData.OnGameWin();
+            Time.timeScale = 0;
         }
     }
 }

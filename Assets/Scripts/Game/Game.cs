@@ -4,6 +4,7 @@ using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.GameEventHandlers;
 using LoonaTest.Game.GameInitializers;
 using LoonaTest.Game.Settings;
+using LoonaTest.Game.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,7 @@ namespace LoonaTest.Game
         private GameField _gameField;
         private ITimeService _timeService;
         private TimeIsOverService _timeIsOverService;
+        private UIManager _uiManager;
 
         public void Init(GameSettings gameSettings)
         {
@@ -36,9 +38,9 @@ namespace LoonaTest.Game
 
         private void InitDependencies()
         {
-            _gameData = new GameData();
+            _gameData = new GameData(_gameSettings);
             _gameEventsHandler = new GameEventsHandler();
-            _timeService = new TimeService(_gameData);
+            _timeService = new TimeService(_gameData, _gameSettings);
             _gameFieldInitializer = new GameFieldInitializer(_gameEventsHandler, _gameSettings);
             _penguinsInitializer = new PenguinsInitializer(_gameSettings.PenguinsSettings);
             _charactersInitializer = new CharactersInitializer(_gameSettings.CharactersSettings);
@@ -46,7 +48,7 @@ namespace LoonaTest.Game
             _penguinsContainer = new PenguinsContainer();
             _penguinsDeinitializer = new PenguinsDeinitializer(_penguinsContainer);
             _charactersDeinitializer = new CharactersDeinitializer(_charactersContainer);
-            _timeIsOverService = new TimeIsOverService(_timeService, _gameData, _gameEventsHandler, _gameSettings);
+            _timeIsOverService = new TimeIsOverService(_timeService, _gameData, _gameEventsHandler);
         }
 
         private void DeinitDependencies()
@@ -76,16 +78,21 @@ namespace LoonaTest.Game
 
         private void InitGame()
         {
+            Time.timeScale = 1;
+            _uiManager = new UIManager(_gameSettings.WindowsSettings);
             _timeService.Init();
             _timeIsOverService.Init();
             _gameField = _gameFieldInitializer.Init();
             _gameFieldDeinitializer = new GameFieldDeinitializer(_gameField);
             _penguinsInitializer.Init(_gameField, _penguinsContainer, _charactersContainer);
             _charactersInitializer.Init(_gameField, _charactersContainer, _penguinsContainer);
-            _gameEventsHandler.SetDependencies(_penguinsContainer, this);
+            _gameEventsHandler.SetDependencies(_penguinsContainer, this, _gameData);
+
+            _uiManager.Open<GameWindow>(WindowId.GameWindow,
+                new GameWindowData() {GameData = _gameData, TimeService = _timeService, Game = this, UIManager = _uiManager});
         }
 
-        public void DeinitGame()
+        private void DeinitGame()
         {
             _gameFieldDeinitializer.Deinit();
             _penguinsDeinitializer.Deinit();
@@ -96,6 +103,7 @@ namespace LoonaTest.Game
 
         public void RestartGame()
         {
+            DeinitGame();
             InitDependencies();
             InitGame();
         }

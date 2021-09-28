@@ -1,17 +1,20 @@
+using UnityEngine;
+
 namespace LoonaTest.Game.GameEventHandlers
 {
     public class TimeIsOverHandler : ITimeIsOverHandler
     {
-        private readonly Game _game;
+        private readonly GameData _gameData;
 
-        public TimeIsOverHandler(Game game)
+        public TimeIsOverHandler(GameData gameData)
         {
-            _game = game;
+            _gameData = gameData;
         }
 
         public void OnTimeIsOver()
         {
-            _game.DeinitGame();
+            _gameData.OnGameLose();
+            Time.timeScale = 0;
         }
     }
 }

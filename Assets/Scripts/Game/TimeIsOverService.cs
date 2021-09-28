@@ -8,15 +8,12 @@ namespace LoonaTest.Game
         private readonly ITimeService _timeService;
         private readonly GameData _gameData;
         private readonly IGameEventsHandler _gameEventsHandler;
-        private readonly GameSettings _gameSettings;
 
-        public TimeIsOverService(ITimeService timeService, GameData gameData, IGameEventsHandler gameEventsHandler,
-            GameSettings gameSettings)
+        public TimeIsOverService(ITimeService timeService, GameData gameData, IGameEventsHandler gameEventsHandler)
         {
             _timeService = timeService;
             _gameData = gameData;
             _gameEventsHandler = gameEventsHandler;
-            _gameSettings = gameSettings;
         }
 
         public void Init()
@@ -26,7 +23,7 @@ namespace LoonaTest.Game
 
         private void OnSecondUpdate()
         {
-            if (_gameData.Time >= _gameSettings.GameTime)
+            if (_gameData.TimeLeft <= 0)
             {
                 _gameEventsHandler.OnTimeIsOver();
             }

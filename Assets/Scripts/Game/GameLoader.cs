@@ -8,6 +8,7 @@ namespace LoonaTest.Game
     {
         [SerializeField]
         private GameSettings _gameSettings;
+
         private void Start()
         {
             var gameController = new GameObject().AddComponent<Game>();
@@ -15,7 +16,6 @@ namespace LoonaTest.Game
             gameController.Init(_gameSettings);
 
             SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
-            SceneManager.LoadSceneAsync("UI", LoadSceneMode.Additive);
         }
     }
 }

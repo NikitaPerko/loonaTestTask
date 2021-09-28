@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f6b4556bd3d477ca0572e7a97621b80, type: 3}
-  m_Name: CharactersSettings
+  m_Script: {fileID: 11500000, guid: 2d0c730b4f10465b9d4d993eda24461f, type: 3}
+  m_Name: WindowsSettings
   m_EditorClassIdentifier: 
-  Speed: 5
-  Prefab: {fileID: -4294905166182486727, guid: b680d496d3564e5449bc5be9118bf225, type: 3}
-  PlayersCount: 2
+  windowPrefabs:
+  - Id: 0
+    WindowPrefab: {fileID: 5141775111379781815, guid: 35ffde01afec948429497f2db407ece0, type: 3}

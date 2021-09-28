@@ -9,6 +9,7 @@ namespace LoonaTest.Game.Settings
         public PenguinsSettings PenguinsSettings;
         public GameField GameFieldPrefab;
         public CharactersSettings CharactersSettings;
+        public WindowsSettings WindowsSettings;
         public int GameTime;
     }
 }
