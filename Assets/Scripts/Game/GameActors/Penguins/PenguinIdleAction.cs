@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LoonaTest.Game.Settings;
 using UnityEngine;
 using UnityEngine.AI;
+using VContainer;
 using Random = UnityEngine.Random;
 
 namespace LoonaTest.Game.GameActors.Penguins
@@ -16,6 +17,7 @@ namespace LoonaTest.Game.GameActors.Penguins
         private readonly PenguinsSettings _penguinsSettings;
         private readonly List<Func<IEnumerator>> activities;
 
+        [Inject]
         public PenguinIdleAction(NavMeshAgent navMeshAgent, PenguinBehaviour penguinBehaviour, GameField gameField,
             PenguinsSettings penguinsSettings)
         {

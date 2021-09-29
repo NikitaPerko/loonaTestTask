@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using LoonaTest.Game.Settings;
 using UnityEngine;
+using VContainer;
 using Object = UnityEngine.Object;
 
 namespace LoonaTest.Game.UI
@@ -9,13 +10,19 @@ namespace LoonaTest.Game.UI
     public class UIManager
     {
         private readonly WindowsFactory _windowsFactory;
-        private readonly Dictionary<WindowId, BaseWindow> _openedWindows;
+        private Dictionary<WindowId, BaseWindow> _openedWindows;
 
-        public UIManager(WindowsSettings windowsSettings)
+        [Inject]
+        public UIManager(WindowsFactory windowsFactory)
+        {
+            _windowsFactory = windowsFactory;
+            _openedWindows = new Dictionary<WindowId, BaseWindow>();
+        }
+
+        public void Init()
         {
             var mainCanvas = (RectTransform) Object.FindObjectOfType<MainCanvas>().transform;
-            _windowsFactory = new WindowsFactory(windowsSettings, mainCanvas);
-            _openedWindows = new Dictionary<WindowId, BaseWindow>();
+            _windowsFactory.Init(mainCanvas);
         }
 
         public BaseWindow Open(WindowId windowId)

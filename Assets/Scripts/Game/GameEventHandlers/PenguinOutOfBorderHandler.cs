@@ -1,27 +1,29 @@
 using System.Collections.Generic;
 using LoonaTest.Game.GameActors.Penguins;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.GameEventHandlers
 {
     public class PenguinOutOfBorderHandler : IPenguinOutOfBorderHandler
     {
-        private readonly List<Penguin> _penguins;
+        private readonly PenguinsContainer _penguinsContainer;
         private readonly IPenguinsAreOverHandler _penguinsAreOverHandler;
 
-        public PenguinOutOfBorderHandler(List<Penguin> penguins, IPenguinsAreOverHandler penguinsAreOverHandler)
+        [Inject]
+        public PenguinOutOfBorderHandler(PenguinsContainer penguinsContainer, IPenguinsAreOverHandler penguinsAreOverHandler)
         {
-            _penguins = penguins;
+            _penguinsContainer = penguinsContainer;
             _penguinsAreOverHandler = penguinsAreOverHandler;
         }
 
         public void OnPenguinOutOfBorder(Penguin penguin)
         {
-            _penguins.Remove(penguin);
+            _penguinsContainer.Penguins.Remove(penguin);
             penguin.Deinit();
             Object.Destroy(penguin.gameObject);
 
-            if (_penguins.Count == 0)
+            if (_penguinsContainer.Penguins.Count == 0)
             {
                 _penguinsAreOverHandler.OnPenguinsAreOver();
             }

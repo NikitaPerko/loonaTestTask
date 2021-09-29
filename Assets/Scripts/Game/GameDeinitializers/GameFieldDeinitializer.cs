@@ -1,20 +1,22 @@
 using LoonaTest.Game.GameActors;
 using UnityEngine;
+using VContainer;
 
-namespace LoonaTest.Game
+namespace LoonaTest.Game.GameDeinitializers
 {
     public class GameFieldDeinitializer
     {
-        private readonly GameField _gameField;
+        private readonly GameFieldContainer _gameFieldContainer;
 
-        public GameFieldDeinitializer(GameField gameField)
+        [Inject]
+        public GameFieldDeinitializer(GameFieldContainer gameFieldContainer)
         {
-            _gameField = gameField;
+            _gameFieldContainer = gameFieldContainer;
         }
 
         public void Deinit()
         {
-            Object.Destroy(_gameField.gameObject);
+            Object.Destroy(_gameFieldContainer.GameField.gameObject);
         }
     }
 }

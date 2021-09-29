@@ -1,16 +1,18 @@
 using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.GameEventHandlers;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.GameActors
 {
     public class ExitBorder : MonoBehaviour
     {
-        private IGameEventsHandler _gameEventsHandler;
+        private IPenguinOutOfBorderHandler _penguinOutOfBorderHandler;
 
-        public void Init(IGameEventsHandler gameEventsHandler)
+        [Inject]
+        public void Init(IPenguinOutOfBorderHandler penguinOutOfBorderHandler)
         {
-            _gameEventsHandler = gameEventsHandler;
+            _penguinOutOfBorderHandler = penguinOutOfBorderHandler;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -19,7 +21,7 @@ namespace LoonaTest.Game.GameActors
 
             if (penguin != null)
             {
-                _gameEventsHandler.OnPenguinOutOfBorder(penguin);
+                _penguinOutOfBorderHandler.OnPenguinOutOfBorder(penguin);
             }
         }
     }

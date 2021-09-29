@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.Settings;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace LoonaTest.Game.GameActors.Characters
 {

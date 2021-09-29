@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Prefab: {fileID: -4294905166182486727, guid: b680d496d3564e5449bc5be9118bf225, type: 3}
-  PlayersCount: 4
+  PlayersCount: 1

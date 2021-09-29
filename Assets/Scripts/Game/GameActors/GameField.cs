@@ -1,4 +1,3 @@
-using LoonaTest.Game.GameEventHandlers;
 using UnityEngine;
 
 namespace LoonaTest.Game.GameActors
@@ -14,20 +13,10 @@ namespace LoonaTest.Game.GameActors
         [SerializeField]
         private Transform _rightTopPos;
 
-        public void Init(IGameEventsHandler gameEventsHandler)
+        public void Init()
         {
-            _exitBorder.Init(gameEventsHandler);
         }
-
-        public (Vector2 leftBot, Vector2 rightTop) GetFieldBordersXZ()
-        {
-            var leftBotPosition = _leftBotPos.position;
-            var leftBotPositionXZ = new Vector2(leftBotPosition.x, leftBotPosition.z);
-            var rightTopPosition = _rightTopPos.position;
-            var rightTopPositionXZ = new Vector2(rightTopPosition.x, rightTopPosition.z);
-            return (leftBotPositionXZ, rightTopPositionXZ);
-        }
-
+        
         public Vector2 GetRandomFieldXZPos()
         {
             var leftBotPosition = _leftBotPos.position;

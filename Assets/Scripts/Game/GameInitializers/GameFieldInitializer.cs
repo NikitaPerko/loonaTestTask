@@ -2,25 +2,28 @@ using LoonaTest.Game.GameActors;
 using LoonaTest.Game.GameEventHandlers;
 using LoonaTest.Game.Settings;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace LoonaTest.Game.GameInitializers
 {
     public class GameFieldInitializer
     {
-        private readonly IGameEventsHandler _gameEventsHandler;
         private readonly GameSettings _gameSettings;
+        private readonly GameFieldContainer _gameFieldContainer;
 
-        public GameFieldInitializer(IGameEventsHandler gameEventsHandler, GameSettings gameSettings)
+        [Inject]
+        public GameFieldInitializer(GameSettings gameSettings, GameFieldContainer gameFieldContainer)
         {
-            _gameEventsHandler = gameEventsHandler;
             _gameSettings = gameSettings;
+            _gameFieldContainer = gameFieldContainer;
         }
 
-        public GameField Init()
+        public void Init()
         {
             var gameField = Object.Instantiate(_gameSettings.GameFieldPrefab);
-            gameField.Init(_gameEventsHandler);
-            return gameField;
+            gameField.Init();
+            _gameFieldContainer.GameField = gameField;
         }
     }
 }

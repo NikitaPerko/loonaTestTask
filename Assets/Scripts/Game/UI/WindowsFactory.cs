@@ -1,16 +1,22 @@
 using LoonaTest.Game.Settings;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.UI
 {
     public class WindowsFactory
     {
         private readonly WindowsSettings _windowsSettings;
-        private readonly RectTransform _mainCanvas;
+        private RectTransform _mainCanvas;
 
-        public WindowsFactory(WindowsSettings windowsSettings, RectTransform mainCanvas)
+        [Inject]
+        public WindowsFactory(WindowsSettings windowsSettings)
         {
             _windowsSettings = windowsSettings;
+        }
+
+        public void Init(RectTransform mainCanvas)
+        {
             _mainCanvas = mainCanvas;
         }
 

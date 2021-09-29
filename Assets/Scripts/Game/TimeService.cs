@@ -1,6 +1,7 @@
 using System;
 using LoonaTest.Game.Settings;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game
 {
@@ -13,6 +14,7 @@ namespace LoonaTest.Game
         private int initTime;
         private int currentTime;
 
+        [Inject]
         public TimeService(GameData gameData, GameSettings gameSettings)
         {
             _gameData = gameData;

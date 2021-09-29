@@ -1,12 +1,14 @@
 using LoonaTest.Game.GameActors.Penguins;
 using UnityEngine;
+using VContainer;
 
-namespace LoonaTest.Game
+namespace LoonaTest.Game.GameDeinitializers
 {
     public class PenguinsDeinitializer
     {
         private readonly PenguinsContainer _container;
 
+        [Inject]
         public PenguinsDeinitializer(PenguinsContainer container)
         {
             _container = container;
