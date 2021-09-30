@@ -10,8 +10,7 @@ namespace LoonaTest.Game
 {
     public class Game : IStartable, ITickable
     {
-        private readonly GameData _gameData;
-        private readonly GameFieldInitializer _gameFieldInitializer;
+        private readonly GameFieldFactory _gameFieldFactory;
         private readonly PenguinsInitializer _penguinsInitializer;
         private readonly CharactersInitializer _charactersInitializer;
         private readonly PenguinsDeinitializer _penguinsDeinitializer;
@@ -22,13 +21,12 @@ namespace LoonaTest.Game
         private readonly UIManager _uiManager;
 
         [Inject]
-        public Game(GameData gameData, GameFieldInitializer gameFieldInitializer, PenguinsInitializer penguinsInitializer,
+        public Game(GameFieldFactory gameFieldFactory, PenguinsInitializer penguinsInitializer,
             CharactersInitializer charactersInitializer, PenguinsDeinitializer penguinsDeinitializer,
             CharactersDeinitializer charactersDeinitializer, GameFieldDeinitializer gameFieldDeinitializer,
             ITimeService timeService, TimeIsOverService timeIsOverService, UIManager uiManager)
         {
-            _gameData = gameData;
-            _gameFieldInitializer = gameFieldInitializer;
+            _gameFieldFactory = gameFieldFactory;
             _penguinsInitializer = penguinsInitializer;
             _charactersInitializer = charactersInitializer;
             _penguinsDeinitializer = penguinsDeinitializer;
@@ -57,14 +55,13 @@ namespace LoonaTest.Game
             Time.timeScale = 1;
             _timeService.Init();
             _timeIsOverService.Init();
-            _gameFieldInitializer.Init();
+            _gameFieldFactory.Init();
             _penguinsInitializer.Init();
             _charactersInitializer.Init();
 
             _uiManager.Init();
 
-            _uiManager.Open<GameWindow>(WindowId.GameWindow,
-                new GameWindowData {GameData = _gameData, TimeService = _timeService, Game = this, UIManager = _uiManager});
+            _uiManager.Open<GameWindow>(WindowId.GameWindow);
         }
 
         private void DeinitGame()

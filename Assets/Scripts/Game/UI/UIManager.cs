@@ -10,7 +10,7 @@ namespace LoonaTest.Game.UI
     public class UIManager
     {
         private readonly WindowsFactory _windowsFactory;
-        private Dictionary<WindowId, BaseWindow> _openedWindows;
+        private readonly Dictionary<WindowId, BaseWindow> _openedWindows;
 
         [Inject]
         public UIManager(WindowsFactory windowsFactory)

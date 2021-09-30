@@ -1,17 +1,20 @@
 using LoonaTest.Game.Settings;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace LoonaTest.Game.UI
 {
     public class WindowsFactory
     {
+        private readonly LifetimeScope _container;
         private readonly WindowsSettings _windowsSettings;
         private RectTransform _mainCanvas;
 
         [Inject]
-        public WindowsFactory(WindowsSettings windowsSettings)
+        public WindowsFactory(LifetimeScope container, WindowsSettings windowsSettings)
         {
+            _container = container;
             _windowsSettings = windowsSettings;
         }
 
@@ -23,7 +26,7 @@ namespace LoonaTest.Game.UI
         public BaseWindow Create(WindowId id)
         {
             var windowSettings = _windowsSettings.windowPrefabs.Find(x => x.Id == id);
-            var window = Object.Instantiate(windowSettings.WindowPrefab, _mainCanvas);
+            var window = _container.Container.Instantiate(windowSettings.WindowPrefab, _mainCanvas);
             return window;
         }
     }

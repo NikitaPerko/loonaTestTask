@@ -10,12 +10,6 @@ namespace LoonaTest.Game
         public event Action GameLose;
         public event Action GameWin;
 
-        [Inject]
-        public GameData(GameSettings settings)
-        {
-            TimeLeft = settings.GameTime;
-        }
-
         public void OnGameLose()
         {
             GameLose?.Invoke();

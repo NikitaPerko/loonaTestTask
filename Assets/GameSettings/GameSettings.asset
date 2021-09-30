@@ -16,4 +16,4 @@ MonoBehaviour:
   GameFieldPrefab: {fileID: 5621258650029116605, guid: 68ff6e3d63ae2eb4d80ce9c81c1e5502, type: 3}
   CharactersSettings: {fileID: 11400000, guid: e7e3dbe19fcfb124ca5cd033e3378232, type: 2}
   WindowsSettings: {fileID: 11400000, guid: 83820103930a23840a35995f28f17af2, type: 2}
-  GameTime: 60
+  GameTime: 5

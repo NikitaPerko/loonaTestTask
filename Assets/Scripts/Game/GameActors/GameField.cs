@@ -1,4 +1,6 @@
+using LoonaTest.Game.GameEventHandlers;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.GameActors
 {
@@ -13,10 +15,12 @@ namespace LoonaTest.Game.GameActors
         [SerializeField]
         private Transform _rightTopPos;
 
-        public void Init()
+        [Inject]
+        public void Construct(IPenguinOutOfBorderHandler penguinOutOfBorderHandler)
         {
+            _exitBorder.Init(penguinOutOfBorderHandler);
         }
-        
+
         public Vector2 GetRandomFieldXZPos()
         {
             var leftBotPosition = _leftBotPos.position;

@@ -16,12 +16,13 @@ namespace LoonaTest.Game
     {
         [SerializeField]
         private GameSettings _gameSettings;
-        
+
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<Game>();
+            DontDestroyOnLoad(this);
+            builder.RegisterEntryPoint<Game>(Lifetime.Scoped).AsSelf();
             builder.Register<GameData>(Lifetime.Scoped);
-            builder.Register<GameFieldInitializer>(Lifetime.Scoped);
+            builder.Register<GameFieldFactory>(Lifetime.Scoped);
             builder.Register<GameFieldDeinitializer>(Lifetime.Scoped);
             builder.Register<PenguinsInitializer>(Lifetime.Scoped);
             builder.Register<PenguinsDeinitializer>(Lifetime.Scoped);
@@ -33,12 +34,14 @@ namespace LoonaTest.Game
             builder.Register<TimeService>(Lifetime.Scoped).As<ITimeService>();
             builder.Register<TimeIsOverService>(Lifetime.Scoped);
             builder.Register<UIManager>(Lifetime.Scoped);
-            builder.Register<WindowsFactory>(Lifetime.Scoped);
+            builder.Register<WindowsFactory>(Lifetime.Singleton);
             builder.Register<TimeIsOverHandler>(Lifetime.Scoped).As<ITimeIsOverHandler>();
-            builder.RegisterInstance(_gameSettings);
-            builder.RegisterInstance(_gameSettings.CharactersSettings);
-            builder.RegisterInstance(_gameSettings.PenguinsSettings);
-            builder.RegisterInstance(_gameSettings.WindowsSettings);
+            builder.Register<PenguinsAreOverHandler>(Lifetime.Scoped).As<IPenguinsAreOverHandler>();
+            builder.Register<PenguinOutOfBorderHandler>(Lifetime.Scoped).As<IPenguinOutOfBorderHandler>();
+            builder.Register(_ => _gameSettings, Lifetime.Scoped);
+            builder.Register(_ => _gameSettings.CharactersSettings, Lifetime.Scoped);
+            builder.Register(_ => _gameSettings.PenguinsSettings, Lifetime.Scoped);
+            builder.Register(_ => _gameSettings.WindowsSettings, Lifetime.Scoped);
         }
     }
 }

@@ -1,7 +1,6 @@
 using LoonaTest.Game.GameActors.Penguins;
 using LoonaTest.Game.GameEventHandlers;
 using UnityEngine;
-using VContainer;
 
 namespace LoonaTest.Game.GameActors
 {
@@ -9,7 +8,6 @@ namespace LoonaTest.Game.GameActors
     {
         private IPenguinOutOfBorderHandler _penguinOutOfBorderHandler;
 
-        [Inject]
         public void Init(IPenguinOutOfBorderHandler penguinOutOfBorderHandler)
         {
             _penguinOutOfBorderHandler = penguinOutOfBorderHandler;

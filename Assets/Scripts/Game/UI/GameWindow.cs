@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using LoonaTest.Game.UI;
 using TMPro;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game
 {
@@ -18,23 +20,34 @@ namespace LoonaTest.Game
         [SerializeField]
         private GameObject _resetButton;
 
-        private GameWindowData _windowData;
+        private GameData _gameData;
+        private ITimeService _timeService;
+        private Game _game;
+        private UIManager _uiManager;
+
+        [Inject, UsedImplicitly]
+        public void Construct(GameData gameData, ITimeService timeService, Game game, UIManager uiManager)
+        {
+            _uiManager = uiManager;
+            _game = game;
+            _timeService = timeService;
+            _gameData = gameData;
+        }
 
         public override void OnOpened()
         {
-            _windowData = (GameWindowData) _baseWindowData;
-            _timer.text = _windowData.GameData.TimeLeft.ToString();
+            _timer.text = _gameData.TimeLeft.ToString();
             _youLoseLabel.SetActive(false);
             _youWinLabel.SetActive(false);
             _resetButton.SetActive(false);
-            _windowData.GameData.GameWin += OnWin;
-            _windowData.GameData.GameLose += OnLose;
-            _windowData.TimeService.OnSecondUpdate += OnSecondUpdate;
+            _gameData.GameWin += OnWin;
+            _gameData.GameLose += OnLose;
+            _timeService.OnSecondUpdate += OnSecondUpdate;
         }
 
         private void OnSecondUpdate()
         {
-            _timer.text = _windowData.GameData.TimeLeft.ToString();
+            _timer.text = _gameData.TimeLeft.ToString();
         }
 
         private void OnLose()
@@ -51,23 +64,15 @@ namespace LoonaTest.Game
 
         public override void OnClosed()
         {
-            _windowData.GameData.GameWin -= OnWin;
-            _windowData.GameData.GameLose -= OnLose;
-            _windowData.TimeService.OnSecondUpdate -= OnSecondUpdate;
+            _gameData.GameWin -= OnWin;
+            _gameData.GameLose -= OnLose;
+            _timeService.OnSecondUpdate -= OnSecondUpdate;
         }
 
         public void OnResetClicked()
         {
-            _windowData.UIManager.Close(Id);
-            _windowData.Game.RestartGame();
+            _uiManager.Close(Id);
+            _game.RestartGame();
         }
-    }
-
-    public class GameWindowData : BaseWindowData
-    {
-        public GameData GameData;
-        public ITimeService TimeService;
-        public Game Game;
-        public UIManager UIManager;
     }
 }

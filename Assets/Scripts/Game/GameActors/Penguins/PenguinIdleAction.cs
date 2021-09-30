@@ -15,7 +15,7 @@ namespace LoonaTest.Game.GameActors.Penguins
         private readonly PenguinBehaviour _penguinBehaviour;
         private readonly GameField _gameField;
         private readonly PenguinsSettings _penguinsSettings;
-        private readonly List<Func<IEnumerator>> activities;
+        private readonly List<Func<IEnumerator>> _activities;
 
         [Inject]
         public PenguinIdleAction(NavMeshAgent navMeshAgent, PenguinBehaviour penguinBehaviour, GameField gameField,
@@ -25,12 +25,12 @@ namespace LoonaTest.Game.GameActors.Penguins
             _penguinBehaviour = penguinBehaviour;
             _gameField = gameField;
             _penguinsSettings = penguinsSettings;
-            activities = new List<Func<IEnumerator>> {WalkingInRandomPoint, StayingAtCurrentPlace};
+            _activities = new List<Func<IEnumerator>> {WalkingInRandomPoint, StayingAtCurrentPlace};
         }
 
         public void Act(object data = null)
         {
-            var randomActivity = activities[Random.Range(0, activities.Count)];
+            var randomActivity = _activities[Random.Range(0, _activities.Count)];
             _penguinBehaviour.StartActivity(randomActivity());
         }
 
