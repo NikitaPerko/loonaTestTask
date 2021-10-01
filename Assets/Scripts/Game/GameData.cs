@@ -1,5 +1,6 @@
 using System;
 using LoonaTest.Game.Settings;
+using VContainer;
 
 namespace LoonaTest.Game
 {
@@ -8,11 +9,6 @@ namespace LoonaTest.Game
         public int TimeLeft;
         public event Action GameLose;
         public event Action GameWin;
-
-        public GameData(GameSettings settings)
-        {
-            TimeLeft = settings.GameTime;
-        }
 
         public void OnGameLose()
         {

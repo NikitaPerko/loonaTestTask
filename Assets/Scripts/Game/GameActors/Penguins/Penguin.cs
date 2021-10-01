@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using LoonaTest.Game.GameActors.Characters;
 using LoonaTest.Game.Settings;
 using UnityEngine;

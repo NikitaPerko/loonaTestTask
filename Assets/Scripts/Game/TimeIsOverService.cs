@@ -1,5 +1,6 @@
 using LoonaTest.Game.GameEventHandlers;
 using LoonaTest.Game.Settings;
+using VContainer;
 
 namespace LoonaTest.Game
 {
@@ -7,13 +8,14 @@ namespace LoonaTest.Game
     {
         private readonly ITimeService _timeService;
         private readonly GameData _gameData;
-        private readonly IGameEventsHandler _gameEventsHandler;
+        private readonly ITimeIsOverHandler _timeIsOverHandler;
 
-        public TimeIsOverService(ITimeService timeService, GameData gameData, IGameEventsHandler gameEventsHandler)
+        [Inject]
+        public TimeIsOverService(ITimeService timeService, GameData gameData, ITimeIsOverHandler timeIsOverHandler)
         {
             _timeService = timeService;
             _gameData = gameData;
-            _gameEventsHandler = gameEventsHandler;
+            _timeIsOverHandler = timeIsOverHandler;
         }
 
         public void Init()
@@ -25,7 +27,7 @@ namespace LoonaTest.Game
         {
             if (_gameData.TimeLeft <= 0)
             {
-                _gameEventsHandler.OnTimeIsOver();
+                _timeIsOverHandler.OnTimeIsOver();
             }
         }
 

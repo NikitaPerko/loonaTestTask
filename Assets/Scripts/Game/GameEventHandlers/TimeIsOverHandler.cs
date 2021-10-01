@@ -1,4 +1,5 @@
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.GameEventHandlers
 {
@@ -6,6 +7,7 @@ namespace LoonaTest.Game.GameEventHandlers
     {
         private readonly GameData _gameData;
 
+        [Inject]
         public TimeIsOverHandler(GameData gameData)
         {
             _gameData = gameData;

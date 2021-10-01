@@ -3,6 +3,7 @@ using LoonaTest.Game.GameActors.Characters;
 using LoonaTest.Game.Settings;
 using UnityEngine;
 using UnityEngine.AI;
+using VContainer;
 
 namespace LoonaTest.Game.GameActors.Penguins
 {
@@ -13,6 +14,7 @@ namespace LoonaTest.Game.GameActors.Penguins
         private readonly NavMeshAgent _navMeshAgent;
         private readonly PenguinsSettings _penguinsSettings;
 
+        [Inject]
         public PenguinDangerAction(Penguin penguin, PenguinBehaviour penguinBehaviour, NavMeshAgent navMeshAgent,
             PenguinsSettings penguinsSettings)
         {

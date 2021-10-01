@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using LoonaTest.Game.GameActors.Penguins;
 using UnityEngine;
+using VContainer;
 
 namespace LoonaTest.Game.GameActors.Characters
 {
@@ -9,6 +10,7 @@ namespace LoonaTest.Game.GameActors.Characters
         private readonly List<Penguin> _penguins;
         private readonly Transform _characterTransform;
 
+        [Inject]
         public ComputerMovement(List<Penguin> penguins, Transform characterTransform)
         {
             _penguins = penguins;
